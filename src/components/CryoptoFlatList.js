@@ -1,43 +1,49 @@
 import { FlatList, View } from "react-native"
-import { useCallback, useContext, useMemo } from "react"
+import { useCallback, useContext, useMemo, useState } from "react"
 import CryptoCurrencyItem from "./CryptoCurrencyItem"
 import { AppContext } from "../../StockApp"
 import CryptoListHeader from "./CryptoListHeader"
 
 
-export default function CryptoList({list}){
-    const {setAmount} = useContext(AppContext)
+export default function CryptoList({ list }) {
+    const { setAmount } = useContext(AppContext)
+    const [timestamp, setTimestamp] = useState()
     console.log("Rendering: CryptoList")
-    
-    const headerText = useMemo(()=> {
-       return {
-        market: 'Market',
-        price: 'Price',
-        change: 'Change',
-        cap: 'Market Cap'
-         }
+
+    const headerText = useMemo(() => {
+        return {
+            market: 'Market',
+            price: 'Price',
+            change: 'Change',
+            cap: 'Market Cap'
+        }
     }, []
     )
-    const updateAmount = useCallback((amount) => {
-       console.log("AMOUNT UPDATE", amount)
-       setAmount(amount)
+    const updateAmount = (index) => {
+        const amount = Date.now()
+        console.log("AMOUNT UPDATE", amount)
+        list[index] = {...list[index], MarketCap:amount}
+        setAmount(amount)
+        setTimestamp(amount)
+    }
 
-    },[])
+
     const ItemSeperator = () => (
-    <View style={
-        {height: 1, width: '100%', backgroundColor: '#F6F7F9'}
-        }/>
+        <View style={
+            { height: 1, width: '100%', backgroundColor: '#F6F7F9' }
+        } />
     )
 
     return (
         <FlatList
-        ItemSeparatorComponent={ItemSeperator}
-        showsVerticalScrollIndicator={false}
-        bounces={false}
-        stickyHeaderIndices={[0]}
-        ListHeaderComponent={<CryptoListHeader headerText={headerText} />}
-        data={list}
-        renderItem = {({item, index}) => <CryptoCurrencyItem callback={(v)=>updateAmount(v)} item={item} index={index}/>}
+            extraData={timestamp}
+            ItemSeparatorComponent={ItemSeperator}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+            stickyHeaderIndices={[0]}
+            ListHeaderComponent={<CryptoListHeader headerText={headerText} />}
+            data={list}
+            renderItem={({ item, index }) => <CryptoCurrencyItem item={item} index={index} callback={updateAmount} />}
         />
     )
 

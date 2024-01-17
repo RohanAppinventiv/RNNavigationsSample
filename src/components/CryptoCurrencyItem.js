@@ -6,21 +6,22 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import { AppContext } from "../../StockApp";
 
 const CryptoCurrencyItem = memo(function CryptoCurrencyItem({item, index, callback}){
-    const [marketCap, setMarketCap] = useState(item.MarketCap)
-    const updateMarketCap = (updatedMarketCapital) =>{
-        setMarketCap(updatedMarketCapital)
-        callback(updatedMarketCapital)
-
+    const updateMarketCap = () =>{
+        callback(index)
     }
     console.log("Rendering: List Item",index)
     return (
-       <Row style={styles.itemParent}>
+        <TouchableOpacity onPress={()=>updateMarketCap()}>
+            <Row style={styles.itemParent}>
             <H7 style={styles.itemBlock}>{item.Market}</H7>
             <H7 style={styles.itemBlock}>$ {(item.Price).toLocaleString("en-US")}</H7>
-            <TouchableOpacity onPress={()=>updateMarketCap(Date.now())} style={styles.itemBlock}><H7 style={ item.Change > -1 ? styles.itemBlockGreen : styles.itemBlockRed }>{item.Change}%</H7></TouchableOpacity>
-            <H7 numberOfLines={1} style={styles.itemCapBlock}>$ {(marketCap).toLocaleString("en-US")}</H7>
+            <H7 style={ item.Change > -1 ? styles.itemBlockGreen : styles.itemBlockRed }>{item.Change}%</H7>
+            <H7 numberOfLines={1} style={styles.itemCapBlock}>$ {(item.MarketCap).toLocaleString("en-US")}</H7>
         </Row>
+        </TouchableOpacity>
     )
+},(prevProps, nextProps)=>{
+    return prevProps.item.MarketCap == nextProps.item.MarketCap
 });
 
 const styles = StyleSheet.create({
@@ -35,11 +36,12 @@ const styles = StyleSheet.create({
         width: '44%',
     },
     itemBlockGreen: {
+        width: '22%',
         color: 'green'
     },
     itemBlockRed: {
+        width: '22%',
         color: 'red'
     }
 })
-// Market: 'AAPL', Price: 150.25, Change: 1.5, MarketCap: 2.5e6
 export default CryptoCurrencyItem;

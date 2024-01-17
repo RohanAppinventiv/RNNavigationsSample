@@ -16,7 +16,7 @@ const Tab = createMaterialTopTabNavigator()
 export default function DashboardScreen() {
     console.log("Rendering: Dashboard")
 
-    const { currentAmount, setAmount } = useContext(AppContext)
+    const { currentAmount } = useContext(AppContext)
 
     const chartData = DataSource.graphData
    

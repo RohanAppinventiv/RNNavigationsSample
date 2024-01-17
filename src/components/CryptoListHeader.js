@@ -3,7 +3,7 @@ import { Row } from "./Surface";
 import { H6 } from "./Texts";
 import { memo } from "react";
 
-const CryptoListHeader = memo(function Header({headerText}){
+const CryptoListHeader = memo(function CryptoListHeader({headerText}){
     console.log("Rendering: List Header: ")
     return (<Row style={styles.headerRow}>
         <H6 style={styles.commonBlock}>{headerText.market}</H6>

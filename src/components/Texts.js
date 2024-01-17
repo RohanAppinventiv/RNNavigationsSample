@@ -2,7 +2,7 @@ import { Text } from "react-native";
 
 
 export const H1 = ({children, style}) => <Text style={[ {
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: '800',
     color: '#373737'
    }, style]}>
