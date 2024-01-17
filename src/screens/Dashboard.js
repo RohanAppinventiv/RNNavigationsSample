@@ -25,7 +25,7 @@ export default function DashboardScreen() {
             <ColumnSurface>
                 <BoxShadow>
                     <H5>Current Balance <Text style={{ color: "#7F8BEF" }}>(USD)</Text></H5>
-                    <H1>${(currentAmount * 13233).toLocaleString("en-US")}</H1>
+                    <H1>${(currentAmount).toLocaleString("en-US")}</H1>
                     <H6 style={{ color: '#D9DBE4' }}>Last update yesterday</H6>
                      <BarChart 
                       data ={chartData.data}

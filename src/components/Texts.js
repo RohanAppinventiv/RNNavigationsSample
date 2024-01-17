@@ -2,7 +2,7 @@ import { Text } from "react-native";
 
 
 export const H1 = ({children, style}) => <Text style={[ {
-    fontSize: 34,
+    fontSize: 32,
     fontWeight: '800',
     color: '#373737'
    }, style]}>
@@ -45,6 +45,14 @@ export const H5 = ({children, style}) => <Text style={[ {
 export const H6 = ({children, style}) => <Text style={[ {
     fontSize: 14,
     fontWeight: '600',
+    color: '#373737'
+   }, style]}>
+    {children}
+    </Text>
+
+export const H7 = ({children, style, numberOfLines}) => <Text numberOfLines = {numberOfLines} style={[ {
+    fontSize: 10,
+    fontWeight: '700',
     color: '#373737'
    }, style]}>
     {children}

@@ -1,17 +1,33 @@
 import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { ColumnSurface } from "../components/Surface"
 import RoundedIcon from "../components/RoundedIcon"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import SearchBar from "../components/SearchBar"
+import DataSource from "../source"
+import CryptoList from "../components/CryoptoFlatList"
+import useDebounce from "../hooks/customHooks"
 
 
 export default function MarketScreen(){
     console.log("Rendering: MarketScreen")
     const [query, setQuery] = useState("")
+    const [list, setList] = useState()
 
+    useEffect(()=>{
+        if(!query){
+           setList(DataSource.shareMarketData)
+        } else {
+            const result = DataSource.shareMarketData.filter((item)=>
+                item.Market.toLowerCase().includes(query.toLowerCase())
+            );
+            setList(result)
+        }
+    },[query])
+    
     return (
-          <ColumnSurface>
+          <ColumnSurface style={{backgroundColor: '#fff', paddingHorizontal:20}}>
            <SearchBar callback={(query) => setQuery(query)}/>
+           <CryptoList list={list} />
           </ColumnSurface>
     )
 }
