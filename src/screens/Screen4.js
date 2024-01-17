@@ -2,23 +2,22 @@ import { useEffect } from "react"
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
 
-const Screen1 = ({navigation}) => {
+const Screen4 = ({navigation}) => {
     useEffect(()=>{
-        console.log("Screen1: Mount")
+        console.log("Screen4: Mount")
         return () => {
-            console.log("Screen1: Unmount")
+            console.log("Screen4: Unmount")
         }
     }, [])
     const handlePress = () =>{
-        navigation.navigate("Screen2", {key: "coming from first screen"});
-        // navigation.goBack()
+        navigation.popToTop()
     }
     return (
         <SafeAreaView style={styles.safeAreaContainer}>
             <View style={styles.parentContainer}>
-                <Text style={styles.screenName}> Screen 1 </Text>
+                <Text style={styles.screenName}> Screen 4</Text>
                 <TouchableOpacity onPress={handlePress} style={styles.buttonContainer}>
-                    <Text style={styles.buttonText}>Go To Screen 2</Text>
+                    <Text style={styles.buttonText}>Go Back</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -53,4 +52,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Screen1;
+export default Screen4;
