@@ -5,6 +5,8 @@ import { useEffect, useState } from "react"
 
 
 export default function SearchBar({callback}){
+    console.log("Rendering: SearchBar")
+
     const [searchText, setSearchText] = useState("")
     const debouncedQuery = useDebounce(searchText, 500)
 
@@ -12,7 +14,6 @@ export default function SearchBar({callback}){
       console.log("SEARCH: DEBOUNCE:", debouncedQuery)
       callback(debouncedQuery)
     },[debouncedQuery])
-    console.log("Rendering: SearchBar")
     return (
         <View style={styles.container}>
             <RoundedIcon imagePath={require('../../assets/search.png')}

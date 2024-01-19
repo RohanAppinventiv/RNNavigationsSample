@@ -2,7 +2,6 @@ import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 
 export default function RoundedIcon(props) {
-    console.log("Rendering: Rounded Icon")
     return (
         <TouchableOpacity style={[styles.outerContainer, props.outerContainerStyle]}>
             <Image source={props.imagePath} style={[styles.innerImage, props.innerImageStyle]} />

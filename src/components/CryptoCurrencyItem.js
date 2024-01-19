@@ -21,7 +21,7 @@ const CryptoCurrencyItem = memo(function CryptoCurrencyItem({item, index, callba
         </TouchableOpacity>
     )
 },(prevProps, nextProps)=>{
-    return prevProps.item.MarketCap == nextProps.item.MarketCap
+    return (prevProps.item.MarketCap == nextProps.item.MarketCap)
 });
 
 const styles = StyleSheet.create({

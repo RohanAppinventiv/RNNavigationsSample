@@ -19,13 +19,16 @@ export default function CryptoList({ list }) {
         }
     }, []
     )
-    const updateAmount = (index) => {
+    const updateAmount = useCallback((index) => {
         const amount = Date.now()
+        console.log("Current Index", index)
+        console.log("Current List", list)
+
         console.log("AMOUNT UPDATE", amount)
         list[index] = {...list[index], MarketCap:amount}
         setAmount(amount)
         setTimestamp(amount)
-    }
+    }, [list])
 
 
     const ItemSeperator = () => (
