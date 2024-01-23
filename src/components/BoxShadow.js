@@ -12,7 +12,7 @@ export default function BoxShadow(props) {
 const styles = StyleSheet.create({
     container: {
         padding: 20,
-        paddingBottom: 40,
+        paddingBottom: 20,
         backgroundColor: '#FFFFFF',
         borderColor: '#CFD1DE',
         margin: 20,
